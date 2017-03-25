@@ -13,8 +13,28 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index() {
+		return "index";
+	}
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home() {
 		return "index";
+	}
+	@RequestMapping(value = "/mailus", method = RequestMethod.GET)
+	public String mailUs() {
+		return "mailus";
+	}
+	@RequestMapping(value = "/rooms", method = RequestMethod.GET)
+	public String rooms() {
+		return "rooms";
+	}
+	@RequestMapping(value = "/gallery", method = RequestMethod.GET)
+	public String gallery() {
+		return "gallery";
+	}
+	@RequestMapping(value = "/account", method = RequestMethod.GET)
+	public String account() {
+		return "account";
 	}
 	
 }
