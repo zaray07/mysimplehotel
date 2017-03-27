@@ -1,6 +1,7 @@
 package com.zaraj.mysimplehotel.controller;
 
 
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +35,12 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	public String account() {
-		return "account";
+				return "account";
 	}
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout() {
+		return "logout";
+	}
+	
 	
 }

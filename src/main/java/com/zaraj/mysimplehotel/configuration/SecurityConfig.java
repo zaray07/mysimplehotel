@@ -12,21 +12,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-          .withUser("user1").password("user1Pass").roles("USER");
+          .withUser("user").password("pass").roles("USER");
     }
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
           .authorizeRequests()
-          .antMatchers("/account*").anonymous()
-          .anyRequest().authenticated()
+          .antMatchers("/").permitAll()
+          .antMatchers("/account").authenticated()
           .and()
           .formLogin()
-          .loginPage("/account.jsp")
-          .defaultSuccessUrl("/home")
-          .failureUrl("/account.jsp?error=true")
-          .and()
-          .logout().logoutSuccessUrl("/home");
+          .loginPage("/login")
+          .usernameParameter("j_username")
+          .passwordParameter("j_password")
+              .and()
+           .logout().logoutUrl("/logout").logoutSuccessUrl("/home")
+        .and()
+		    .csrf();         
     }
 }
