@@ -15,18 +15,21 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 //import org.springframework.transaction.annotation.EnableTransactionManagement
 
 
 @Configuration
-//@EnableTransactionManagement
+@EnableTransactionManagement
+@Transactional(readOnly=true)
 public class DataBaseConfig{
  
-   @Bean
+   @Bean(name = "dataSource")
    public DataSource dataSource(){
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-      dataSource.setUrl("jdbc:mysql://localhost:3306/xyzhotel");
+      dataSource.setUrl("jdbc:mysql://localhost:3306/xyzhotel?autoReconnect=true&useSSL=false&serverTimezone=UTC");
       dataSource.setUsername( "root" );
       dataSource.setPassword( "michal123" );
       return dataSource;
@@ -44,7 +47,7 @@ public class DataBaseConfig{
       return properties;
    }
    
-  @Bean
+/*  @Bean
    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
       LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
       em.setDataSource(dataSource());
@@ -53,20 +56,20 @@ public class DataBaseConfig{
       em.setJpaVendorAdapter(vendorAdapter);
       em.setJpaProperties(additionalProperties()); 
       return em;
-   }
+   }*/
    
 /*   @Bean
    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
       JpaTransactionManager transactionManager = new JpaTransactionManager();
       transactionManager.setEntityManagerFactory(emf);
       return transactionManager;
-   }*/
+
    
 @Bean
    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
        return entityManagerFactory.createEntityManager();
    }
-
+   }*/
 }
    
    

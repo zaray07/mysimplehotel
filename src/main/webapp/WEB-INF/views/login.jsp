@@ -18,14 +18,14 @@
 	<c:url var="loginUrl" value="/login" />
 	<form action="${loginUrl}" method="post" class="form-horizontal">
 		<p>
-			<label for="j_username">User:</label>
+			<label for="userName">User:</label>
 		</p>
-		<input type="text" id="j_username" name="j_username" />
+		<input type="text" id="userName" name="userName" />
 
 		<p>
-			<label for="j_password">Password:</label>
+			<label for="userPassword">Password:</label>
 		</p>
-		<input type="password" id="j_password" name="j_password"> <input
+		<input type="password" id="userPassword" name="userPassword"> <input
 			type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<div>
 			<input name="submit" type="submit" />
